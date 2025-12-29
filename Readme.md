@@ -50,3 +50,4 @@ Sebuah aplikasi terjemahan otomatis untuk SAMP (San Andreas Multiplayer) yang me
    ```
     pip -r requirements.txt
    ```
+3. **Enter, dan selamat bot sudah berjalan**
