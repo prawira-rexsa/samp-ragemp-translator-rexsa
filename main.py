@@ -9,12 +9,11 @@ import os
 class SimpleTranslator:
     def __init__(self):
         self.running = True
-        self.source_lang = 'id'  # Default: Indonesia
-        self.target_lang = 'en'  # Default: Inggris
+        self.source_lang = 'id'  
+        self.target_lang = 'en'  
         self.load_settings()
         
     def load_settings(self):
-        """Memuat pengaturan dari file jika ada"""
         try:
             if os.path.exists('translator_settings.txt'):
                 with open('translator_settings.txt', 'r') as f:
@@ -28,7 +27,6 @@ class SimpleTranslator:
             pass
     
     def save_settings(self):
-        """Menyimpan pengaturan ke file"""
         try:
             with open('translator_settings.txt', 'w') as f:
                 f.write(f"source={self.source_lang}\n")
@@ -37,7 +35,6 @@ class SimpleTranslator:
             pass
     
     def show_main_menu(self):
-        """Menampilkan menu utama"""
         os.system('cls' if os.name == 'nt' else 'clear')
         print("╔════════════════════════════════════════╗")
         print("║      SAMP TRANSLATOR - PRAWIRA REXSA   ║")
@@ -53,7 +50,6 @@ class SimpleTranslator:
         print()
     
     def show_translation_settings(self):
-        """Menampilkan pengaturan terjemahan"""
         os.system('cls' if os.name == 'nt' else 'clear')
         print("╔════════════════════════════════════════╗")
         print("║        PENGATURAN TERJEMAHAN           ║")
@@ -100,7 +96,6 @@ class SimpleTranslator:
             return
     
     def get_language_name(self, lang_code):
-        """Mengembalikan nama bahasa dari kode"""
         language_names = {
             'id': 'Indonesia',
             'en': 'Inggris',
@@ -125,7 +120,6 @@ class SimpleTranslator:
         return language_names.get(lang_code, f"Tidak Diketahui ({lang_code})")
     
     def change_source_language(self):
-        """Mengubah bahasa sumber"""
         os.system('cls' if os.name == 'nt' else 'clear')
         print("╔════════════════════════════════════════╗")
         print("║          UBAH BAHASA SUMBER            ║")
@@ -149,7 +143,6 @@ class SimpleTranslator:
             input("\nTekan Enter untuk melanjutkan...")
     
     def change_target_language(self):
-        """Mengubah bahasa target"""
         os.system('cls' if os.name == 'nt' else 'clear')
         print("╔════════════════════════════════════════╗")
         print("║          UBAH BAHASA TARGET            ║")
@@ -173,7 +166,6 @@ class SimpleTranslator:
             input("\nTekan Enter untuk melanjutkan...")
     
     def show_running_info(self):
-        """Menampilkan informasi saat bot berjalan"""
         os.system('cls' if os.name == 'nt' else 'clear')
         print("╔════════════════════════════════════════╗")
         print("║        SAMP TRANSLATOR RUNNING         ║")
@@ -191,7 +183,6 @@ class SimpleTranslator:
         print("Menunggu input... (F9 untuk translate)")
     
     def force_present_tense(self, text):
-        # Hanya terapkan untuk terjemahan ke Inggris
         if self.target_lang != 'en':
             return text
             
@@ -326,7 +317,6 @@ class SimpleTranslator:
         return text
     
     def correct_grammar_for_me(self, text):
-        # Hanya terapkan untuk terjemahan ke Inggris
         if self.target_lang != 'en':
             return text
             
@@ -361,7 +351,6 @@ class SimpleTranslator:
                 print("Hasil terjemahan kosong, menggunakan teks asli")
                 return text
             
-            # Hanya terapkan koreksi grammar untuk terjemahan ke Inggris
             if self.target_lang == 'en':
                 if translated.startswith('/me'):
                     translated = self.correct_grammar_for_me(translated)
@@ -411,27 +400,21 @@ class SimpleTranslator:
             print(f"Error: {type(e).__name__}: {e}")
     
     def run_translation_bot(self):
-        """Menjalankan bot terjemahan"""
         self.show_running_info()
         
-        # Hapus semua hotkey sebelumnya
         keyboard.unhook_all()
         
-        # Tambah hotkey baru
         keyboard.add_hotkey('f9', self.translate_selected)
         keyboard.add_hotkey('ctrl+alt+x', lambda: self.stop_translation_bot())
         
-        # Tunggu sampai pengguna menekan Ctrl+Alt+X
         keyboard.wait('ctrl+alt+x')
     
     def stop_translation_bot(self):
-        """Menghentikan bot terjemahan"""
         keyboard.unhook_all()
         print("\nBot terjemahan dihentikan. Kembali ke menu utama...")
         time.sleep(2)
     
     def run(self):
-        """Menjalankan menu utama"""
         while self.running:
             self.show_main_menu()
             
@@ -451,4 +434,5 @@ class SimpleTranslator:
 
 if __name__ == "__main__":
     translator = SimpleTranslator()
+
     translator.run()
