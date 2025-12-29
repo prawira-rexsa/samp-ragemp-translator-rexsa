@@ -46,7 +46,7 @@ Sebuah aplikasi terjemahan otomatis untuk SAMP (San Andreas Multiplayer) yang me
 
 1. **Clone atau download repository ini**
 
-2. **Masuk ke direktori proyek**
+2. **Masuk ke direktori proyek dan open cmd kemudian ketik**
    ```
-   ketik pip install -r requirements.txt di cmd.
+    pip -r requirements.txt
    ```
